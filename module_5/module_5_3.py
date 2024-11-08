@@ -17,10 +17,16 @@ class House:  # создали класс
         return f'Название: {self.name}, кол-во этажей: {self.number_of_floors}'  # возвращаем строку и атрибуты со значениями name, number_of_floor
 
     def __eq__(self, other):  # дополнили метод, реализующий перегрузку оператора равенства
-        return int(self.number_of_floors) == other  # возвращаем значение True если сравниваемые объекты равны
+        if isinstance(other, int):  # ставим условие если тип данных другого объекта - число
+            return int(self.number_of_floors) == other  # возвращаем значение True если сравниваемые объекты равны
+        elif isinstance(other, House):  # ставим еще одно условие если тип данных другого объекта - House
+            return self.number_of_floors == other.number_of_floors  # возвращаем значение True если атрибуты объектов равны
 
     def __lt__(self, other):  # дополнили метод, реализующий перегрузку оператора меньше
-        return self.number_of_floors < other  # возвращаем значение True если объект self < объекта other
+        if isinstance(other, int):  # ставим условие если тип данных другого объекта - число
+            return int(self.number_of_floors) < other  # возвращаем значение True если атрибут объекта меньше другого объекта
+        elif isinstance(other, House):  # ставим еще одно условие если тип данных другого объекта - House
+            return self.number_of_floors < other.number_of_floors  # возвращаем значение True если атрибут объекта self < атрибута объекта other
 
     def __le__(self, other):  # дополнили метод, реализующий перегрузку оператора меньше или равно
         return self.number_of_floors <= other  # возвращаем значение True если объект self <= объекта other
